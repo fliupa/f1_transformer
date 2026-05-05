@@ -1,7 +1,10 @@
 # Data
 data/f1_cache/
 data/raw/races/
+!data/raw/races/race_results_all.csv
+!data/raw/races/race_results_all.pkl
 data/raw/weather/
+!data/raw/weather/weather_all.csv
 data/processed/
 
 # Models

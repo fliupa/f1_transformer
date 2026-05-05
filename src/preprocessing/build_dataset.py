@@ -119,6 +119,10 @@ def main():
 
     # 2025 prediction sequences
     print("\n2025 prediction sequences:")
+    has_2025 = not featured_df[featured_df["year"] == 2025].empty
+    if not has_2025:
+        print("  WARNING: No 2025 data found in race_results_all.csv!")
+        print("  Run fetch_data.py first to download the 2025 season from FastF1.")
     ctx_2025, cand_2025, win_2025, gap_2025, meta_2025 = builder.build_sequences(2025, 2025)
 
     # 5. Split combined into train/val (time-based: last 15% for validation)

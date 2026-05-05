@@ -12,7 +12,7 @@ import torch.nn as nn
 from torch.utils.data import DataLoader, TensorDataset
 from torch.optim import AdamW
 from torch.optim.lr_scheduler import CosineAnnealingWarmRestarts, ReduceLROnPlateau
-from torch.cuda.amp import autocast, GradScaler
+from torch.amp import autocast, GradScaler
 import numpy as np
 from pathlib import Path
 from typing import Optional, Dict, List, Callable
@@ -82,7 +82,7 @@ class Trainer:
         )
 
         # AMP scaler
-        self.scaler = GradScaler(enabled=self.use_amp)
+        self.scaler = GradScaler('cuda', enabled=self.use_amp)
 
         # Tracking
         self.best_val_acc = 0.0
@@ -124,7 +124,7 @@ class Trainer:
 
             self.optimizer.zero_grad()
 
-            with autocast(enabled=self.use_amp):
+            with autocast('cuda', enabled=self.use_amp):
                 logits = self.model(context, candidates, time_gaps)
                 loss = self.criterion(logits, winners)
 
@@ -160,7 +160,7 @@ class Trainer:
             winners = winners.to(self.device)
             time_gaps = time_gaps.to(self.device)
 
-            with autocast(enabled=self.use_amp):
+            with autocast('cuda', enabled=self.use_amp):
                 logits = self.model(context, candidates, time_gaps)
                 loss = self.criterion(logits, winners)
 
@@ -259,7 +259,7 @@ class Trainer:
         path = self.checkpoint_dir / filename
         if not path.exists():
             return False
-        checkpoint = torch.load(path, map_location=self.device)
+        checkpoint = torch.load(path, map_location=self.device, weights_only=False)
         self.model.load_state_dict(checkpoint["model_state_dict"])
         return True
 

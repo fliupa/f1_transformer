@@ -26,6 +26,8 @@ if os.environ.get("COLAB"):
 
 sys.path.insert(0, str(PROJECT_ROOT))
 from src.model.transformer_model import F1WinnerTransformer
+from src.model.transformer_model_v2 import F1WinnerTransformerV2
+from scripts.train_mlp import F1WinnerMLP
 
 # Real 2025 winners
 REAL_WINNERS_2025 = {
@@ -36,37 +38,87 @@ REAL_WINNERS_2025 = {
 }
 
 
-def load_model_and_metadata(device="cpu"):
-    """Load trained model and metadata."""
-    metadata_path = PROCESSED_DATA / "metadata.pkl"
+def load_model_and_metadata(device="cpu", model_version="v1"):
+    """Load trained model and metadata.
+
+    Args:
+        device: torch device
+        model_version: "v1", "v2", or "v2_recent"
+    """
+    version_map = {
+        "v1": ("", F1WinnerTransformer),
+        "v2": ("_v2", F1WinnerTransformerV2),
+        "v2_recent": ("_v2_recent", F1WinnerTransformerV2),
+        "v3": ("_v3", F1WinnerTransformerV2),
+        "mlp": ("_v2", F1WinnerMLP),  # MLP uses V2 data
+    }
+    suffix, ModelClass = version_map.get(model_version, ("", F1WinnerTransformer))
+    metadata_path = PROCESSED_DATA / f"metadata{suffix}.pkl"
+    if model_version == "mlp":
+        model_path = MODELS_DIR / "final" / "best_mlp.pt"
+    else:
+        model_path = MODELS_DIR / "final" / f"best{suffix}.pt"
+
     with open(metadata_path, "rb") as f:
         metadata = pickle.load(f)
 
-    model = F1WinnerTransformer(
-        d_model=192, n_heads=6, n_encoder_layers=3, n_cross_attn_layers=2,
-        d_ff=768, dropout=0.15, context_window=metadata["context_window"],
-        num_drivers=metadata["num_drivers"],
-        num_constructors=metadata["num_constructors"],
-        num_circuits=metadata["num_circuits"],
-        d_candidate_raw=metadata["d_candidate_raw"],
-        d_context_raw=metadata["d_context_raw"],
-    )
-
-    if BEST_MODEL.exists():
-        checkpoint = torch.load(BEST_MODEL, map_location="cpu", weights_only=False)
-        model.load_state_dict(checkpoint["model_state_dict"])
-        print(f"Loaded combined model (val_acc={checkpoint.get('best_val_acc', 0):.4f})")
+    if ModelClass == F1WinnerMLP:
+        model = F1WinnerMLP(
+            d_context_raw=metadata["d_context_raw"],
+            context_window=metadata["context_window"],
+            d_candidate_raw=metadata["d_candidate_raw"],
+            num_drivers=metadata["num_drivers"],
+            num_constructors=metadata["num_constructors"],
+            num_circuits=metadata["num_circuits"],
+        )
+    elif ModelClass == F1WinnerTransformerV2:
+        # V2 models: read architecture params from metadata or use defaults
+        v2_configs = {
+            "v2": dict(d_model=128, n_heads=4, n_encoder_layers=4, n_cross_attn_layers=3, d_ff=512, dropout=0.25),
+            "v2_recent": dict(d_model=96, n_heads=3, n_encoder_layers=2, n_cross_attn_layers=2, d_ff=384, dropout=0.30),
+            "v3": dict(d_model=128, n_heads=4, n_encoder_layers=4, n_cross_attn_layers=3, d_ff=512, dropout=0.30),
+        }
+        cfg = v2_configs.get(model_version, v2_configs["v2"])
+        model = F1WinnerTransformerV2(
+            d_model=cfg["d_model"], n_heads=cfg["n_heads"],
+            n_encoder_layers=cfg["n_encoder_layers"],
+            n_cross_attn_layers=cfg["n_cross_attn_layers"],
+            d_ff=cfg["d_ff"], dropout=cfg["dropout"],
+            context_window=metadata["context_window"],
+            num_drivers=metadata["num_drivers"],
+            num_constructors=metadata["num_constructors"],
+            num_circuits=metadata["num_circuits"],
+            d_candidate_raw=metadata["d_candidate_raw"],
+            d_context_raw=metadata["d_context_raw"],
+        )
     else:
-        raise FileNotFoundError(f"Model not found at {BEST_MODEL}. Run train.py first.")
+        model = F1WinnerTransformer(
+            d_model=192, n_heads=6, n_encoder_layers=3, n_cross_attn_layers=2,
+            d_ff=768, dropout=0.15, context_window=metadata["context_window"],
+            num_drivers=metadata["num_drivers"],
+            num_constructors=metadata["num_constructors"],
+            num_circuits=metadata["num_circuits"],
+            d_candidate_raw=metadata["d_candidate_raw"],
+            d_context_raw=metadata["d_context_raw"],
+        )
+
+    if model_path.exists():
+        checkpoint = torch.load(model_path, map_location="cpu", weights_only=False)
+        model.load_state_dict(checkpoint["model_state_dict"])
+        print(f"Loaded {model_version} model (val_acc={checkpoint.get('best_val_acc', 0):.4f})")
+    else:
+        raise FileNotFoundError(f"Model not found at {model_path}. Run train.py first.")
 
     model = model.to(device)
     model.eval()
     return model, metadata
 
 
-def predict_2025_season(model, metadata, device):
+def predict_2025_season(model, metadata, device, model_version="v1"):
     """Predict winners for all 2025 races."""
-    data_2025_path = PROCESSED_DATA / "features_2025.pt"
+    version_suffix_map = {"v1": "", "v2": "_v2", "v2_recent": "_v2_recent", "v3": "_v3", "mlp": "_v2"}
+    suffix = version_suffix_map.get(model_version, "")
+    data_2025_path = PROCESSED_DATA / f"features_2025{suffix}.pt"
     if not data_2025_path.exists():
         raise FileNotFoundError(f"2025 data not found at {data_2025_path}")
 
@@ -125,13 +177,13 @@ def predict_2025_season(model, metadata, device):
     return pred_df, summary_df, correct
 
 
-def main():
+def main(model_version="v1"):
     device_str = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
     device = torch.device(device_str)
-    print(f"Device: {device}")
+    print(f"Device: {device} | Model: {model_version}")
 
-    model, metadata = load_model_and_metadata(device)
-    pred_df, summary_df, correct = predict_2025_season(model, metadata, device)
+    model, metadata = load_model_and_metadata(device, model_version)
+    pred_df, summary_df, correct = predict_2025_season(model, metadata, device, model_version)
 
     OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
     (OUTPUTS_DIR / "predictions").mkdir(exist_ok=True)

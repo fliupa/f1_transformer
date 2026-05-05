@@ -1,0 +1,29 @@
+pretraining:
+  seed: 42
+  epochs: 80
+  batch_size: 32
+  learning_rate: 5.0e-4
+  weight_decay: 1.0e-5
+  warmup_epochs: 3
+  grad_clip: 1.0
+  patience: 12
+  device: cuda
+  use_amp: true
+
+finetuning:
+  epochs: 25
+  batch_size: 32
+  learning_rate: 5.0e-5
+  weight_decay: 1.0e-4
+  freeze_encoder_layers: [0, 1]
+  device: cuda
+  use_amp: true
+
+data:
+  context_window: 10
+  validation_split: 0.15
+  train_start_year: 2014
+  train_end_year: 2022
+  finetune_start_year: 2023
+  finetune_end_year: 2024
+  predict_year: 2025

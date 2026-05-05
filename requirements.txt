@@ -1,0 +1,13 @@
+torch>=2.0.0
+pandas>=2.0.0
+numpy>=1.24.0
+scikit-learn>=1.3.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+xgboost>=2.0.0
+fastf1>=3.4.0
+openmeteo-requests>=1.3.0
+requests-cache>=1.2.0
+retry-requests>=2.0.0
+pyyaml>=6.0
+tqdm>=4.65.0

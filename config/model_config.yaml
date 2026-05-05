@@ -1,0 +1,15 @@
+model:
+  d_model: 192
+  n_heads: 6
+  n_encoder_layers: 3
+  n_cross_attn_layers: 2
+  d_ff: 768
+  dropout: 0.15
+  context_window: 10
+  driver_embed_dim: 16
+  constructor_embed_dim: 8
+  circuit_embed_dim: 8
+  max_drivers: 80
+  max_constructors: 20
+  max_circuits: 45
+  use_time_aware_pe: true

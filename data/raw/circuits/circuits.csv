@@ -1,0 +1,62 @@
+circuit_name,country,length_km,corners,drs_zones,altitude_m,track_type,downforce,tyre_degradation,overtaking_difficulty,lap_record_s,track_type_code,downforce_code,tyre_degradation_code,overtaking_code,avg_corner_speed,altitude_normalized
+Albert Park,Australia,5.278,14,4,8,street,medium,medium,medium,80.235,0,1,1,1,377.0,-0.4915626475974603
+Bahrain International Circuit,Bahrain,5.412,15,3,17,permanent,medium,high,easy,91.002,2,1,2,0,360.8,-0.4707923948820747
+Jeddah Corniche Circuit,Saudi Arabia,6.174,27,3,12,street,medium,low,easy,90.734,0,1,0,0,228.66666666666666,-0.4823314241684
+Melbourne Grand Prix Circuit,Australia,5.278,14,4,8,street,medium,medium,medium,80.235,0,1,1,1,377.0,-0.4915626475974603
+Albert Park Circuit,Australia,5.278,14,4,8,street,medium,medium,medium,80.235,0,1,1,1,377.0,-0.4915626475974603
+Autodromo Enzo e Dino Ferrari,Italy,4.909,19,2,38,permanent,medium,medium,hard,75.484,2,1,1,2,258.36842105263156,-0.42232847187950817
+Imola Circuit,Italy,4.909,19,2,38,permanent,medium,medium,hard,75.484,2,1,1,2,258.36842105263156,-0.42232847187950817
+Autodromo Nazionale Monza,Italy,5.793,11,2,162,permanent,low,low,easy,81.046,2,0,0,0,526.6363636363636,-0.13616054557863924
+Monza Circuit,Italy,5.793,11,2,162,permanent,low,low,easy,81.046,2,0,0,0,526.6363636363636,-0.13616054557863924
+Autódromo José Carlos Pace,Brazil,4.309,15,2,780,permanent,high,medium,medium,70.54,2,2,1,1,287.26666666666665,1.2900634742111752
+Interlagos Circuit,Brazil,4.309,15,2,780,permanent,high,medium,medium,70.54,2,2,1,1,287.26666666666665,1.2900634742111752
+Baku City Circuit,Azerbaijan,6.003,20,2,-28,street,low,low,easy,103.105,0,0,0,0,300.15,-0.5746436584590029
+Bahrain Outer Circuit,Bahrain,3.543,11,1,17,permanent,low,low,easy,55.404,2,0,0,0,322.09090909090907,-0.4707923948820747
+Barcelona-Catalunya Circuit,Spain,4.657,14,2,110,permanent,high,high,hard,78.149,2,2,2,2,332.64285714285717,-0.256166450156423
+Circuit de Barcelona-Catalunya,Spain,4.657,14,2,110,permanent,high,high,hard,78.149,2,2,2,2,332.64285714285717,-0.256166450156423
+Circuit de Monaco,Monaco,3.337,19,1,10,street,high,low,hard,72.909,0,2,0,2,175.6315789473684,-0.4869470358829302
+Monaco Circuit,Monaco,3.337,19,1,10,street,high,low,hard,72.909,0,2,0,2,175.6315789473684,-0.4869470358829302
+Circuit de Spa-Francorchamps,Belgium,7.004,19,2,400,permanent,medium,medium,easy,104.286,2,1,1,0,368.63157894736844,0.4130972484504479
+Spa-Francorchamps,Belgium,7.004,19,2,400,permanent,medium,medium,easy,104.286,2,1,1,0,368.63157894736844,0.4130972484504479
+Circuit Gilles Villeneuve,Canada,4.361,14,3,10,semi-permanent,medium,low,easy,73.078,1,1,0,0,311.5,-0.4869470358829302
+Circuit of the Americas,USA,5.513,20,2,172,permanent,high,medium,easy,96.164,2,2,1,0,275.65,-0.11308248700598852
+Circuit Park Zandvoort,Netherlands,4.259,14,2,5,permanent,high,high,hard,71.349,2,2,2,2,304.2142857142857,-0.49848606516925553
+Zandvoort Circuit,Netherlands,4.259,14,2,5,permanent,high,high,hard,71.349,2,2,2,2,304.2142857142857,-0.49848606516925553
+Circuit Zandvoort,Netherlands,4.259,14,2,5,permanent,high,high,hard,71.349,2,2,2,2,304.2142857142857,-0.49848606516925553
+Hockenheimring,Germany,4.574,17,2,97,permanent,medium,medium,medium,73.78,2,1,1,1,269.05882352941177,-0.2861679263008689
+Hungaroring,Hungary,4.381,14,2,165,permanent,high,high,hard,76.603,2,2,2,2,312.92857142857144,-0.12923712800684403
+Istanbul Park,Turkey,5.338,14,2,50,permanent,high,low,easy,84.17,2,2,0,0,381.2857142857143,-0.3946348015923273
+Korean International Circuit,Korea,5.615,18,2,3,permanent,medium,medium,medium,99.905,2,1,1,1,311.94444444444446,-0.5031016768837857
+Kuwait Motor Town,Kuwait,5.032,18,2,81,permanent,medium,medium,medium,108.0,2,1,1,1,279.55555555555554,-0.3230928200171101
+Las Vegas Strip Circuit,USA,6.201,17,2,610,street,low,low,easy,94.0,0,0,0,0,364.7647058823529,0.8977364784761129
+Losail International Circuit,Qatar,5.38,16,1,9,permanent,high,medium,medium,83.317,2,2,1,1,336.25,-0.48925484174019523
+Marina Bay Street Circuit,Singapore,4.94,19,3,5,street,high,high,hard,95.188,0,2,2,2,260.0,-0.49848606516925553
+Miami International Autodrome,USA,5.412,19,3,2,street,medium,medium,easy,89.79,0,1,1,0,284.8421052631579,-0.5054094827410508
+Mugello Circuit,Italy,5.245,15,2,290,permanent,high,medium,medium,78.833,2,2,1,1,349.6666666666667,0.15923860415128996
+Nürburgring,Germany,5.148,15,2,570,permanent,high,medium,medium,88.139,2,2,1,1,343.2,0.8054242441855101
+Portimão Circuit,Portugal,4.653,15,2,120,permanent,high,medium,easy,78.821,2,2,1,0,310.2,-0.23308839158377226
+Algarve International Circuit,Portugal,4.653,15,2,120,permanent,high,medium,easy,78.821,2,2,1,0,310.2,-0.23308839158377226
+Red Bull Ring,Austria,4.318,10,3,670,permanent,medium,low,easy,65.619,2,1,0,0,431.8,1.0362048299120172
+Sepang International Circuit,Malaysia,5.543,15,2,20,permanent,high,high,easy,94.224,2,2,2,0,369.53333333333336,-0.46386897731027943
+Shanghai International Circuit,China,5.451,16,2,5,permanent,high,medium,easy,92.114,2,2,1,0,340.6875,-0.49848606516925553
+Silverstone Circuit,Great Britain,5.891,18,2,145,permanent,high,high,medium,87.097,2,2,2,1,327.27777777777777,-0.17539324515214547
+Sochi Autodrom,Russia,5.848,18,2,10,permanent,medium,medium,hard,95.761,2,1,1,2,324.8888888888889,-0.4869470358829302
+Autódromo Hermanos Rodríguez,Mexico,4.304,17,2,2250,permanent,high,low,easy,77.774,2,2,0,0,253.1764705882353,4.682538084390831
+Mexico City Circuit,Mexico,4.304,17,2,2250,permanent,high,low,easy,77.774,2,2,0,0,253.1764705882353,4.682538084390831
+Suzuka International Racing Course,Japan,5.807,18,1,45,permanent,high,high,medium,90.983,2,2,2,1,322.6111111111111,-0.40617383087865266
+Suzuka Circuit,Japan,5.807,18,1,45,permanent,high,high,medium,90.983,2,2,2,1,322.6111111111111,-0.40617383087865266
+Yas Marina Circuit,UAE,5.281,16,2,5,permanent,high,medium,hard,82.109,2,2,1,2,330.0625,-0.49848606516925553
+Buddh International Circuit,India,5.137,13,2,190,permanent,medium,medium,easy,87.2,2,1,1,0,395.15384615384613,-0.07154198157521723
+Valencia Street Circuit,Spain,5.419,25,2,5,street,high,medium,hard,98.56,0,2,1,2,216.76,-0.49848606516925553
+Autodromo Internazionale del Mugello,Italy,5.245,15,2,290,permanent,high,medium,medium,78.833,2,2,1,1,349.6666666666667,0.15923860415128996
+Jerez Circuit,Spain,4.428,13,2,30,permanent,high,medium,medium,79.591,2,2,1,1,340.61538461538464,-0.4407909187376287
+Circuit Paul Ricard,France,5.842,15,2,30,permanent,medium,medium,medium,92.74,2,1,1,1,389.46666666666664,-0.4407909187376287
+Paul Ricard Circuit,France,5.842,15,2,30,permanent,medium,medium,medium,92.74,2,1,1,1,389.46666666666664,-0.4407909187376287
+Buriram International Circuit,Thailand,4.554,16,2,188,permanent,medium,high,easy,85.436,2,1,2,0,284.625,-0.07615759328974737
+Chang International Circuit,Thailand,4.554,16,2,188,permanent,medium,high,easy,85.436,2,1,2,0,284.625,-0.07615759328974737
+Autodromo di Monza,Italy,5.793,11,2,162,permanent,low,low,easy,81.046,2,0,0,0,526.6363636363636,-0.13616054557863924
+Albert Park Grand Prix Circuit,Australia,5.278,14,4,8,street,medium,medium,medium,80.235,0,1,1,1,377.0,-0.4915626475974603
+Circuit Zolder,Belgium,4.0,14,2,48,permanent,high,medium,medium,79.0,2,2,1,1,285.7142857142857,-0.39925041330685745
+Texas Motor Speedway,USA,5.513,20,2,172,permanent,high,medium,easy,96.164,2,2,1,0,275.65,-0.11308248700598852
+Madrid Street Circuit,Spain,5.474,20,3,667,street,medium,medium,medium,90.0,0,1,1,1,273.7,1.029281412340222
+Autódromo de Madrid,Spain,5.474,20,3,667,street,medium,medium,medium,90.0,0,1,1,1,273.7,1.029281412340222
